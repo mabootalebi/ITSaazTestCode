@@ -1,4 +1,5 @@
-﻿using Contracts.DTOs.Person;
+﻿using Contracts.DTOs;
+using Contracts.DTOs.Person;
 
 namespace Services.Interfaces
 {
@@ -6,5 +7,6 @@ namespace Services.Interfaces
     {
         Task<IEnumerable<FetchPersonDto>?> GetAllPeopleAsync();
         Task<FetchPersonDto?> GetPersonByIdAsync(int id);
+        Task<ResultDto<FetchPersonDto>> CreateAsync(CreatePersonDto dto);
     }
 }

@@ -1,3 +1,5 @@
+using Contracts.DTOs.Person;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 
@@ -28,6 +30,13 @@ namespace API.Controllers
         {
             var person = await _personServices.GetPersonByIdAsync(id);
             return person is not null? Ok(person): NotFound($"There is no person with Id: {id}");
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> Create(CreatePersonDto dto)
+        {
+            var result = await _personServices.CreateAsync(dto);
+            return result.HasError? BadRequest(result.Message) : Created(new Uri(Request.GetEncodedUrl() + "/" + result.Result?.Id), result.Result);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Domain.RepositoryInterfaces.IPersonRepository.Queries;
+﻿using Domain.RepositoryInterfaces.IPersonRepository.Commands;
+using Domain.RepositoryInterfaces.IPersonRepository.Queries;
+using Infrastructure.Db.Repositories.PersonRepository.Commands;
 using Infrastructure.Db.Repositories.PersonRepository.Queries;
 using Services;
 using Services.Interfaces;
@@ -11,6 +13,7 @@ namespace API
         {
             #region repositories
             builder.Services.AddTransient<IPersonQueryRepository, PersonQueryRepository>();
+            builder.Services.AddTransient<IPersonCommandRepository, PersonCommandRepository>();
             #endregion
 
             #region Services
