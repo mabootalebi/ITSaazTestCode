@@ -1,3 +1,4 @@
+using API;
 using API.Extensions;
 using Infrastructure.Db;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.ResolveIoC();
 
 var configBuilder = new ConfigurationBuilder();
 configBuilder.AddJsonFile("appsettings.json");
