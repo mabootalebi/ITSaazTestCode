@@ -1,4 +1,5 @@
 using Contracts.DTOs.Person;
+using Contracts.Enums;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
@@ -29,14 +30,29 @@ namespace API.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var person = await _personServices.GetPersonByIdAsync(id);
-            return person is not null? Ok(person): NotFound($"There is no person with Id: {id}");
+            return person is not null ? Ok(person) : NotFound($"There is no person with Id: {id}");
         }
 
-        [HttpPost()]
+        [HttpPost]
         public async Task<IActionResult> Create(CreatePersonDto dto)
         {
             var result = await _personServices.CreateAsync(dto);
-            return result.HasError? BadRequest(result.Message) : Created(new Uri(Request.GetEncodedUrl() + "/" + result.Result?.Id), result.Result);
+            return result.Status == StatusEnum.Success? 
+                Created(new Uri(Request.GetEncodedUrl() + "/" + result.Result?.Id), result.Result): BadRequest(result.Message);
+        }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> Update(int id, UpdatePersonDto dto)
+        {
+            dto.Id = id;
+            var result = await _personServices.UpdateAsync(dto);
+            return result.Status switch
+            {
+                StatusEnum.Success => Ok(result.Result),
+                StatusEnum.NotFound => NotFound(result.Message),
+                StatusEnum.BadRequest => BadRequest(result.Message),
+                _ => throw new InvalidOperationException()
+            };
         }
     }
 }

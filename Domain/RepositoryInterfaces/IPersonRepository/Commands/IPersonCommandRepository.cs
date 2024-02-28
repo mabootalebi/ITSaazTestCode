@@ -5,6 +5,7 @@ namespace Domain.RepositoryInterfaces.IPersonRepository.Commands
 {
     public interface IPersonCommandRepository
     {
-        Task<Person> CreateAsync(Person person);
+        Task CreateAsync(Person person);
+        Task UpdateAsync(Person person);
     }
 }

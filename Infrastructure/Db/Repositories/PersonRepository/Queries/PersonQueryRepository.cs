@@ -40,6 +40,9 @@ namespace Infrastructure.Db.Repositories.PersonRepository.Queries
             if (dto.Email is not null)
                 query = query.Where(t => t.Email.Equals(dto.Email)).AsQueryable();
 
+            if (dto.PhoneNumber is not null)
+                query = query.Where(t => t.Email.Equals(dto.PhoneNumber)).AsQueryable();
+
             return query;
         }
     }

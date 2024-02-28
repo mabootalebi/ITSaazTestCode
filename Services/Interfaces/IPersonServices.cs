@@ -8,5 +8,6 @@ namespace Services.Interfaces
         Task<IEnumerable<FetchPersonDto>?> GetAllPeopleAsync();
         Task<FetchPersonDto?> GetPersonByIdAsync(int id);
         Task<ResultDto<FetchPersonDto>> CreateAsync(CreatePersonDto dto);
+        Task<ResultDto<FetchPersonDto>> UpdateAsync(UpdatePersonDto dto);
     }
 }

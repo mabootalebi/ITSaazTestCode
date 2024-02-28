@@ -1,9 +1,11 @@
 ﻿
+using Contracts.Enums;
+
 namespace Contracts.DTOs
 {
     public class ResultDto
     {
-        public bool HasError { get; set; } = false;
+        public StatusEnum Status { get; set; } = StatusEnum.Success;
         public string? Message { get; set; }
     }
 
@@ -11,7 +13,7 @@ namespace Contracts.DTOs
     {
         public T? Result { get; set; }
 
-        public bool HasError { get; set; } = false;
+        public StatusEnum Status { get; set; } = StatusEnum.Success;
         public string? Message { get; set; }
     }
 }

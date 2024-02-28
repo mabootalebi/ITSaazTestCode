@@ -9,11 +9,16 @@ namespace Infrastructure.Db.Repositories.PersonRepository.Commands
         private readonly RepositoryDbContext _dbContext;
         public PersonCommandRepository(RepositoryDbContext dbContext) => _dbContext = dbContext;
 
-        public async Task<Person> CreateAsync(Person person)
+        public async Task CreateAsync(Person person)
         {
             _dbContext.People.Add(person);
             await _dbContext.SaveChangesAsync();
-            return person;
+        }
+
+        public async Task UpdateAsync(Person person)
+        {
+            _dbContext.People.Update(person);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
