@@ -28,7 +28,7 @@ namespace Services
                         Email = t.Email,
                         FirstName = t.Firstname,
                         LastName = t.Lastname,
-                        PhoneNumber = t.PhoneNumber,
+                        RawPhoneNumber = t.PhoneNumber,
                         Id = t.Id
                     }).ToList();
         }
@@ -42,7 +42,7 @@ namespace Services
                 Email = person.Email,
                 FirstName = person.Firstname,
                 LastName = person.Lastname,
-                PhoneNumber = person.PhoneNumber,
+                RawPhoneNumber = person.PhoneNumber,
                 Id = person.Id
             };
         }
@@ -145,7 +145,7 @@ namespace Services
             person.Email = dto.Email;
             person.Firstname = dto.FirstName;
             person.Lastname = dto.LastName;
-            person.PhoneNumber = dto.PhoneNumber;
+            person.PhoneNumber = dto.NormalizedPhonNumber;
             person.DateOfBirth = dto.DateOfBirth;
         }
 
@@ -168,7 +168,7 @@ namespace Services
                 Email = person.Email,
                 FirstName = person.Firstname,
                 LastName = person.Lastname,
-                PhoneNumber = person.PhoneNumber,
+                RawPhoneNumber = person.PhoneNumber,
                 Id = person.Id
             };
         }

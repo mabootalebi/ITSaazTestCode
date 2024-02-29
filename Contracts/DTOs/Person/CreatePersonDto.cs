@@ -11,14 +11,13 @@ namespace Contracts.DTOs.Person
         public required string LastName { get; set; }
 
         [Required]
-        [StringLength(10, ErrorMessage = "Invalid Persian date time format")]
-        public required string DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
 
         [Required]
         [RegularExpression("^(\\+989[0-9]{9})|(00989[0-9]{9}|(09[0-9]{9}))$", ErrorMessage = "Invalid Phone Number")]
         public required string PhoneNumber { get; set; }
 
-        public string NormalizedPhonNumber => PhoneNumber.Replace("+98", "0").Replace("0098","0");
+        public long NormalizedPhonNumber => long.Parse(PhoneNumber.Replace("+98", "0").Replace("0098","0"));
 
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]

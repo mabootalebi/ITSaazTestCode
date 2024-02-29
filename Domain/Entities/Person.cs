@@ -10,10 +10,8 @@ namespace Domain.Entities
 		public required string Firstname { get; set; }
         [MaxLength(1024)]
         public required string Lastname { get; set; }
-		[StringLength(10)]
-		public required string DateOfBirth { get; set; }
-		[StringLength(11)]
-		public required string PhoneNumber { get; set; }
+		public required DateOnly DateOfBirth { get; set; }
+		public long PhoneNumber { get; set; }
 
 		[MaxLength(1024)]
 		public required string Email { get; set; }
