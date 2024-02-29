@@ -172,5 +172,21 @@ namespace Services
                 Id = person.Id
             };
         }
+
+
+        public async Task<ResultDto> DeleteAsync(int id)
+        {
+            var fetchPersonResult = await TryFetchPersonById(id);
+            if (fetchPersonResult.Status != StatusEnum.Success)
+                return new ResultDto
+                {
+                    Status = fetchPersonResult.Status,
+                    Message = fetchPersonResult.Message
+                };
+
+            var person = fetchPersonResult.Result;
+            await _commandRepository.DeleteAsync(person!);
+            return new ResultDto();
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace API.Controllers
                 Created(new Uri(Request.GetEncodedUrl() + "/" + result.Result?.Id), result.Result): BadRequest(result.Message);
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdatePersonDto dto)
         {
             dto.Id = id;
@@ -51,6 +51,18 @@ namespace API.Controllers
                 StatusEnum.Success => Ok(result.Result),
                 StatusEnum.NotFound => NotFound(result.Message),
                 StatusEnum.BadRequest => BadRequest(result.Message),
+                _ => throw new InvalidOperationException()
+            };
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _personServices.DeleteAsync(id);
+            return result.Status switch
+            {
+                StatusEnum.Success => NoContent(),
+                StatusEnum.NotFound => NotFound(result.Message),
                 _ => throw new InvalidOperationException()
             };
         }

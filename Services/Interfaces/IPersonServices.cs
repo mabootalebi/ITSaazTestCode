@@ -9,5 +9,6 @@ namespace Services.Interfaces
         Task<FetchPersonDto?> GetPersonByIdAsync(int id);
         Task<ResultDto<FetchPersonDto>> CreateAsync(CreatePersonDto dto);
         Task<ResultDto<FetchPersonDto>> UpdateAsync(UpdatePersonDto dto);
+        Task<ResultDto> DeleteAsync(int id);
     }
 }

@@ -7,5 +7,6 @@ namespace Domain.RepositoryInterfaces.IPersonRepository.Commands
     {
         Task CreateAsync(Person person);
         Task UpdateAsync(Person person);
+        Task DeleteAsync(Person person);
     }
 }

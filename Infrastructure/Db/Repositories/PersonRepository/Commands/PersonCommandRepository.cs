@@ -20,5 +20,11 @@ namespace Infrastructure.Db.Repositories.PersonRepository.Commands
             _dbContext.People.Update(person);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task DeleteAsync(Person person)
+        {
+            _dbContext.People.Remove(person);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
