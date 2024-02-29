@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Runtime.Serialization;
+﻿
+using System.Text.Json.Serialization;
 
 namespace Contracts.DTOs.Person
 {
@@ -10,7 +10,6 @@ namespace Contracts.DTOs.Person
         public required string LastName { get; set; }
         public DateOnly DateOfBirth { get; set; }
 
-        [IgnoreDataMember]
         [JsonIgnore]
         public long RawPhoneNumber { get; set; }
 
