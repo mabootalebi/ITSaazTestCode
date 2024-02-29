@@ -1,6 +1,39 @@
 @API_HostAddress = http://localhost:5118
 
-GET {{API_HostAddress}}/weatherforecast/
-Accept: application/json
+POST {{API_HostAddress}}/person/Create
+Content-Type: application/json
+
+{
+  "firstName": "mahsa",
+  "lastName": "abootalebi",
+  "dateOfBirth": "2024-02-29",
+  "phoneNumber": "+989173515080",
+  "email": "user@example.com"
+}
+
+###
+
+DELETE {{API_HostAddress}}/person/Delete/1
+
+###
+
+GET {{API_HostAddress}}/person/GetAll
+
+###
+
+GET {{API_HostAddress}}/person/GetById/1
+
+###
+
+PUT {{API_HostAddress}}/person/Update/1
+Content-Type: application/json
+
+{
+  "firstName": "mahsa",
+  "lastName": "abootalebi",
+  "dateOfBirth": "2021-02-20",
+  "phoneNumber": "09020173012",
+  "email": "user@example.com"
+}
 
 ###
